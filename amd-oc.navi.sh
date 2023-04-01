@@ -589,3 +589,7 @@ set_PowerLimit
 set_FanSpeed
 
 echo '0' > /sys/class/drm/card${cardno}/device/pp_dpm_fclk
+
+if [${MEM_CLOCK[$i]} < 5 && ${MEM_CLOCK[$i]} >= 0]; then
+        rocm-smi --setmclk=${MEM_CLOCK[$i]}
+fi
