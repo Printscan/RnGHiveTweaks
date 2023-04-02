@@ -198,6 +198,14 @@ for (( i=0; i < $n; i++ )); do
 done
 
 echo ""
+arraylength=${#MEM_CLOCK[@]}
+
+for (( i=0; i<${arraylength}; i++ ));
+do
+    if [[ ${MEM_CLOCK[i]} < 5 ]]; then
+        rocm-smi -d $i --setmclk=${MEM_CLOCK[i]}
+    fi
+done
 
 /hive/bin/message success "autostart miner" && miner start
 
